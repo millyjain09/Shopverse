@@ -45,6 +45,9 @@ app.use("/api/order",orderRoutes)
 
 
 
+app.get("/", (req, res) => {
+  res.send("Backend Live ✔");
+});
 
 
 app.post('/api/chatbot/message', async (req, res) => {
@@ -74,6 +77,8 @@ app.post('/api/chatbot/message', async (req, res) => {
         res.status(500).json({ error: "Failed to generate AI response." });
     }
 });
+
+
 
 // app.use(express.static(path.join(__dirname,"/frontend/dist")));
 // app.get("*",(req,res)=>{
