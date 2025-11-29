@@ -3,7 +3,7 @@ import Title from '../Component/Title';
 import { ShopDataContext } from '../Context/ShopContext';
 import { useNavigate } from 'react-router-dom';
 import { RiDeleteBin6Line } from "react-icons/ri"; 
-import CartTotal from '../Component/  CartTotal';
+import CartTotal from '../Component/CartTotal';
 import { FaArrowRight } from "react-icons/fa6";
 
 function Cart() {
