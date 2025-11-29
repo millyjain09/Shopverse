@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom'
 import AuthContext from './Context/AuthContext.jsx';
 import UserContext from './Context/UserContext.jsx'
 import ShopContext from './Context/ShopContext.jsx' 
+axios.defaults.withCredentials = true;
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
