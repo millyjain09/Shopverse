@@ -30,7 +30,10 @@ let app=express();
 let port=process.env.PORT||6000;
 app.use(cors({
     // origin:["http://localhost:5173","http://localhost:5174"],
-    origin:"https://shopverse-pi.vercel.app",
+    origin:[
+    "http://localhost:5173",
+    "http://localhost:5174",
+    "https://shopverse-pi.vercel.app"],
     credentials:true
 }))
 app.use(express.json());
