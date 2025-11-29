@@ -29,7 +29,8 @@ let app=express();
 
 let port=process.env.PORT||6000;
 app.use(cors({
-    origin:["http://localhost:5173","http://localhost:5174"],
+    // origin:["http://localhost:5173","http://localhost:5174"],
+    origin:"*",
     credentials:true
 }))
 app.use(express.json());
@@ -78,9 +79,9 @@ app.post('/api/chatbot/message', async (req, res) => {
 // app.get("*",(req,res)=>{
 //     res.sendFile(path.resolve(__dirname,"frontend","dist","index.html"));
 // })
-
+connectDB();
 app.listen(port,()=>{
     console.log(`Connected running on ${port}`);
-    connectDB();
+    
 })
 
