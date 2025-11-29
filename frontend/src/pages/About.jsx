@@ -2,8 +2,8 @@ import React from "react";
 import Title from "../Component/Title";
 import { FaShippingFast, FaTags, FaHeadset, FaLeaf } from "react-icons/fa";
 import { motion } from "framer-motion";
-import NewLetterBox from "../Component/NewLetterBox"; // ✅ Added
-import Footer from "../Component/Footer"; // ✅ Added
+import NewLetterBox from "../Component/NewLetterBox"; 
+import Footer from "../Component/Footer"; 
 import aboutImg from "../assets/about.png"; 
 
 const About = () => {
