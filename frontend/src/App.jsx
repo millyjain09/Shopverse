@@ -11,7 +11,7 @@ import Product from './pages/Product';
 import Contact from './pages/Contact';
 import ProductDetails from './pages/ProductDetails';
 import Cart from './pages/Cart';
-import PlaceOrder from './pages/placeOrder';
+import PlaceOrder from './pages/PlaceOrder.jsx';
 import Order from './pages/Order';
 import NotFound from './pages/NotFound';
 import Ai from './Component/Ai';
