@@ -1,0 +1,22 @@
+# Node
+node_modules/
+**/node_modules/
+
+# Build
+frontend/build/
+backend/build/
+admin_panel/build/
+
+# Env
+*.env
+frontend/.env
+backend/.env
+admin_panel/.env
+
+# OS junk
+.DS_Store
+Thumbs.db
+# Logs
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
