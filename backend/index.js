@@ -23,7 +23,7 @@ const model = "gemini-2.5-flash";
 let app=express();
 
 
-// const __dirname=path.resolve();
+
 
 
 
@@ -32,7 +32,8 @@ app.use(cors({
     origin: [
         "http://localhost:5173",
         "http://localhost:5174",
-        "https://shopverse-pi.vercel.app"
+        "https://shopverse-pi.vercel.app",
+        "https://shopverse-backend-2agv.onrender.com"
     ],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
@@ -56,34 +57,13 @@ app.get("/", (req, res) => {
   res.send("Backend Live ✔");
 });
 
+app.post('/api/chatbot/message', async (req, res) => { try 
+    { const { prompt, history } = req.body;
+     if (!prompt) { return res.status(400).json({ error: "Prompt is missing" }); 
+    } const formattedHistory = history.map(msg => ({ role: msg.sender === 'user' ? 'user' : 'model', parts: [{ text: msg.text }], })); const response = await ai.models.generateContent({ model: model, contents: [...formattedHistory, { role: 'user', parts: [{ text: prompt }] }] }); const aiReply = response.text; res.json({ reply: aiReply }); } catch (error) { console.error("Gemini API Error:", error.message); res.status(500).json({ error: "Failed to generate AI response." }); } });
 
-app.post('/api/chatbot/message', async (req, res) => {
-    try {
-        const { prompt, history } = req.body;
-        
-        if (!prompt) {
-            return res.status(400).json({ error: "Prompt is missing" });
-        }
 
-        const formattedHistory = history.map(msg => ({
-            role: msg.sender === 'user' ? 'user' : 'model',
-            parts: [{ text: msg.text }],
-        }));
 
-    
-        const response = await ai.models.generateContent({
-            model: model,
-            contents: [...formattedHistory, { role: 'user', parts: [{ text: prompt }] }]
-        });
-
-        const aiReply = response.text;
-        res.json({ reply: aiReply }); 
-
-    } catch (error) {
-        console.error("Gemini API Error:", error.message);
-        res.status(500).json({ error: "Failed to generate AI response." });
-    }
-});
 
 
 

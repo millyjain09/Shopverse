@@ -1,9 +1,9 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { BsChatDotsFill, BsX, BsSendFill } from "react-icons/bs"; 
-import { motion } from "framer-motion"; // ✅ IMPORT 1: Motion add kiya
+import { motion } from "framer-motion"; // 
 
-const BACKEND_URL = 'http://localhost:8000/api/chatbot/message'; 
+const BACKEND_URL = 'https://shopverse-backend-2agv.onrender.com/api/chatbot/message'; 
 
 function ChatWidget() {
     const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +27,11 @@ function ChatWidget() {
         setInput('');
         setLoading(true);
         try {
-            const response = await axios.post(BACKEND_URL, { prompt: text, history: [...messages, newUserMessage] });
+           const response = await axios.post(BACKEND_URL, 
+  { prompt: text, history: [...messages, newUserMessage] },
+  { timeout: 30000 } 
+);
+
             setMessages(prev => [...prev, { sender: 'ai', text: response.data.reply }]);
         } catch (error) {
             setMessages(prev => [...prev, { sender: 'ai', text: "Connection error. Please try again." }]);
@@ -37,11 +41,10 @@ function ChatWidget() {
     const handleKeyPress = (e) => { if (e.key === 'Enter') sendMessage(); };
 
     return (
-        // ✅ UPDATE 1: Position Fixed (Mobile: bottom-24, Desktop: bottom-6)
-        // ✅ UPDATE 2: 'drag' prop added for dragging
+
         <motion.div 
             drag
-            dragMomentum={false} // Drag rukne par slide nahi karega
+            dragMomentum={false} 
             className="fixed bottom-[90px] md:bottom-6 right-6 z-[100]"
         >
             
