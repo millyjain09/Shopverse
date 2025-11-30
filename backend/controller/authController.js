@@ -21,12 +21,14 @@ const Registration=async(req,res)=>{
         let hashPassword=await bcrypt.hash(password,10);
         const user=await User.create({name,email,password:hashPassword});
         let token=await genToken(user._id);
-        res.cookie("token",token,{
-            httpOnly:true,
-            secure:true,
-            sameSite:"None",
-            maxAge:7*24*60*60*1000
-        });
+        res.cookie("token", token, {
+  httpOnly: true,
+  secure: true,
+  sameSite: "none",
+  path: "/",           
+  maxAge: 7 * 24 * 60 * 60 * 1000
+});
+
       
         return res.status(201).json({user});
 
@@ -52,12 +54,14 @@ const login=async(req,res)=>{
              
         }
          let token=await genToken(user._id);
-        res.cookie("token",token,{
-            httpOnly:true,
-            secure:true,
-            sameSite:"None",
-            maxAge:7*24*60*60*1000
-        });
+       res.cookie("token", token, {
+  httpOnly: true,
+  secure: true,
+  sameSite: "none",
+  path: "/", 
+  maxAge: 7 * 24 * 60 * 60 * 1000
+});
+
         return res.status(201).json({message:"Login Sucessfull!"});
 
     }
@@ -69,19 +73,37 @@ const login=async(req,res)=>{
 
 
 
-const logout=async(req,res)=>{
-    try{
-        res.clearCookie("token");
-         return res.status(200).json({message:"Log out Successful!"})
-    }
-    catch(error){
-        console.log("LogOut Error");
-         return res.status(400).json({message:`Logout error ${error}`})
+// const logout=async(req,res)=>{
+//     try{
+//         res.clearCookie("token");
+//          return res.status(200).json({message:"Log out Successful!"})
+//     }
+//     catch(error){
+//         console.log("LogOut Error");
+//          return res.status(400).json({message:`Logout error ${error}`})
 
 
-    }
+//     }
 
-}
+// }
+
+const logout = async (req, res) => {
+  try {
+    res.clearCookie("token", {
+  httpOnly: true,
+  secure: true,
+  sameSite: "none",
+  path: "/",  
+});
+
+
+    return res.status(200).json({ message: "Logout Successful!" });
+  } catch (error) {
+    console.log("Logout Error", error);
+    return res.status(400).json({ message: `Logout error ${error}` });
+  }
+};
+
 
 const googleLogin=async(req,res)=>{
     try{
@@ -92,12 +114,14 @@ const googleLogin=async(req,res)=>{
              
         }
          let token=await genToken(user._id);
-        res.cookie("token",token,{
-            httpOnly:true,
-            secure:true,
-            sameSite:"None",
-            maxage:7*24*60*60*1000
-        });
+        res.cookie("token", token, {
+  httpOnly: true,
+  secure: true,
+  sameSite: "none",
+  path: "/", 
+  maxAge: 7 * 24 * 60 * 60 * 1000
+});
+
         return res.status(200).json(user);
 
     }

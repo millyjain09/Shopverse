@@ -1,10 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react';
-//  import logo from '../assets/sv_logo_bl.png';
+
  import log from "../assets/image1.png";
 
 
 
-// ✅ NEW PREMIUM ICONS (Remix Icons)
+
 import { RiSearchLine, RiUserLine, RiShoppingBagLine, RiMenu3Line, RiCloseLine } from "react-icons/ri";
 import { IoMdHome } from "react-icons/io";
 import { HiOutlineCollection } from "react-icons/hi";
@@ -31,6 +31,8 @@ function Nav() {
     try {
       await axios.get(serverUrl + '/api/auth/logout', { withCredentials: true });
       getCurrentUser();
+      navigate("/login")
+
     } catch (error) {
       console.log(error);
     }
@@ -113,7 +115,7 @@ function Nav() {
                   {!userData ? 
                     <li className='hover:bg-teal-50 hover:text-teal-700 px-5 py-3 transition cursor-pointer' onClick={() => { navigate('/login'); setShowProfile(false); }}>Login</li> 
                     : 
-                    <li className='hover:bg-red-50 hover:text-red-500 px-5 py-3 transition cursor-pointer' onClick={() => { handleLogOut(); setShowProfile(false); }}>Logout</li>
+                    <li className='hover:bg-red-50 hover:text-red-500 px-5 py-3 transition cursor-pointer' onClick={() => {handleLogOut(); setShowProfile(false); }}>Logout</li>
                   }
                   <li className='hover:bg-teal-50 hover:text-teal-700 px-5 py-3 transition cursor-pointer' onClick={() => { navigate("/order"); setShowProfile(false) }}>My Orders</li>
                 </ul>
