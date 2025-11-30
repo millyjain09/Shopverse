@@ -60,23 +60,32 @@ const CustomerLove = () => {
 
   const settings = {
     dots: true,
-    className: "center",
-    centerMode: true,
     infinite: true,
-    centerPadding: "0px",
-    slidesToShow: 3,
     speed: 500,
+    slidesToShow: 3,
+    centerMode: true,
+    centerPadding: "0px",
     autoplay: true,
     autoplaySpeed: 3000,
     arrows: false,
+
     responsive: [
       {
         breakpoint: 1024,
-        settings: { slidesToShow: 2, centerMode: false }
+        settings: {
+          slidesToShow: 2,
+          centerMode: false,
+          className: "",
+        }
       },
       {
         breakpoint: 768,
-        settings: { slidesToShow: 1, centerMode: false }
+        settings: {
+          slidesToShow: 1,
+          centerMode: false,
+          className: "",
+          centerPadding: "0px",
+        }
       }
     ]
   };
@@ -84,31 +93,36 @@ const CustomerLove = () => {
   return (
     <div className='py-20 bg-gradient-to-b from-white to-teal-50 overflow-hidden font-sans'>
 
-      {/* FIXED CSS */}
+      {/* FULL CSS FIX */}
       <style>{`
+        /* Desktop animation */
         @media(min-width:1024px){
           .slick-slide > div {
             transform: scale(0.9);
             opacity: 0.6;
             filter: blur(1px);
-            transition: all 0.5s ease;
+            transition: all 0.4s ease;
           }
           .slick-center > div {
             transform: scale(1.1);
             opacity: 1 !important;
-            filter: blur(0px);
-            position: relative;
+            filter: blur(0);
             z-index: 10;
           }
         }
 
-        /* MOBILE FIX — remove scaling */
+        /* MOBILE FIX — remove scaling + add padding */
         @media(max-width:768px){
+          .slick-slide {
+            padding: 0 14px !important;
+          }
+
           .slick-slide > div {
             transform: scale(1) !important;
             opacity: 1 !important;
-            filter: blur(0px) !important;
+            filter: blur(0) !important;
           }
+
           .slick-center > div {
             transform: scale(1) !important;
           }
@@ -120,16 +134,16 @@ const CustomerLove = () => {
       <div className='text-center mb-16'>
         <Title text1={"Customer "} text2={"Love"} />
         <p className='text-teal-600 mt-2 font-medium'>
-          See what our happy customers say❤️
+          See what our happy customers say about us
         </p>
       </div>
 
-      <div className='max-w-7xl mx-auto px-0 md:px-4'>
+      <div className='max-w-7xl mx-auto px-2 md:px-4'>
         <Slider {...settings}>
           {reviews.map((review) => (
             <div key={review.id} className="py-10 px-2 outline-none">
-              
-              <div className='bg-white p-8 rounded-2xl shadow-xl border border-teal-100 h-full flex flex-col justify-between relative mx-2'>
+
+              <div className='bg-white p-8 rounded-2xl shadow-xl border border-teal-100 h-full flex flex-col justify-between relative'>
                 
                 <div className='absolute top-4 right-6 text-teal-100'>
                   <FaQuoteLeft size={40} />
@@ -143,11 +157,13 @@ const CustomerLove = () => {
                   />
                   <div>
                     <h3 className='font-bold text-gray-800 text-lg'>{review.name}</h3>
-                    <p className='text-xs text-teal-600 font-bold uppercase tracking-wider'>{review.role}</p>
+                    <p className='text-xs text-teal-600 font-bold uppercase tracking-wider'>
+                      {review.role}
+                    </p>
                   </div>
                 </div>
 
-                <p className='text-gray-600 text-sm md:text-base leading-relaxed italic line-clamp-4'>
+                <p className='text-gray-600 text-sm md:text-base leading-relaxed italic'>
                   "{review.text}"
                 </p>
 
