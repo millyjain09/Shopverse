@@ -38,22 +38,6 @@ const reviews = [
     rating: 5,
     text: "Shopping experience was so smooth. The app UI is amazing and the return policy is very hassle-free.",
   },
-  {
-    id: 5,
-    name: "Vikram Singh",
-    role: "Gym Trainer",
-    image: "https://randomuser.me/api/portraits/men/46.jpg",
-    rating: 4,
-    text: "Ordered sportswear. The material is breathable and fits perfectly for my workouts. Will order again.",
-  },
-  {
-    id: 6,
-    name: "Anjali Mehta",
-    role: "Artist",
-    image: "https://randomuser.me/api/portraits/women/90.jpg",
-    rating: 5,
-    text: "Absolutely in love with the trendy tops! The colors are vibrant and exactly as shown in the pictures.",
-  }
 ];
 
 const CustomerLove = () => {
@@ -61,124 +45,47 @@ const CustomerLove = () => {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 600,
     slidesToShow: 3,
     centerMode: true,
     centerPadding: "0px",
-    autoplay: true,
-    autoplaySpeed: 3000,
     arrows: false,
-
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          centerMode: false,
-          className: "",
-        }
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          centerMode: false,
-          className: "",
-          centerPadding: "0px",
-        }
-      }
-    ]
+    autoplay: true,
+    autoplaySpeed: 2500,
   };
 
   return (
-    <div className='py-20 bg-gradient-to-b from-white to-teal-50 overflow-hidden font-sans'>
+    <div className="py-20 bg-gradient-to-b from-white to-teal-50">
 
-      {/* FINAL CSS FOR PERFECT MOBILE VIEW */}
-      <style>{`
-        /* Desktop animation */
-        @media(min-width:1024px){
-          .slick-slide > div {
-            transform: scale(0.9);
-            opacity: 0.6;
-            filter: blur(1px);
-            transition: all 0.4s ease;
-          }
-          .slick-center > div {
-            transform: scale(1.1);
-            opacity: 1 !important;
-            filter: blur(0);
-            z-index: 10;
-          }
-        }
-
-        /* MOBILE FULL-WIDTH FIX */
-        @media(max-width:768px){
-
-          /* card full width */
-          .slick-slide > div {
-            width: 100% !important;
-            max-width: 100% !important;
-            transform: scale(1) !important;
-            opacity: 1 !important;
-            filter: blur(0) !important;
-          }
-
-          /* side padding for clean look */
-          .slick-slide {
-            padding: 0 12px !important;
-          }
-
-          /* disable center scaling */
-          .slick-center > div {
-            transform: scale(1) !important;
-          }
-        }
-
-        .slick-slide:focus { outline: none; }
-      `}</style>
-
-      <div className='text-center mb-16'>
-        <Title text1={"Customer "} text2={"Love"} />
-        <p className='text-teal-600 mt-2 font-medium'>
-          See what our happy customers say about us
-        </p>
+      <div className="text-center mb-16">
+        <Title text1="Customer " text2="Love" />
+        <p className="text-teal-600 mt-2 font-medium">See what our customers say about us</p>
       </div>
 
-      <div className='max-w-7xl mx-auto px-4'>
+      {/* Desktop Slider */}
+      <div className="hidden md:block max-w-7xl mx-auto px-4">
         <Slider {...settings}>
           {reviews.map((review) => (
-            <div key={review.id} className="py-10 outline-none w-full">
+            <div key={review.id} className="p-4">
+              <div className="bg-white p-8 rounded-2xl shadow-lg border border-teal-100 relative">
 
-              <div className='bg-white p-8 rounded-2xl shadow-xl border border-teal-100 h-full flex flex-col justify-between relative w-full'>
-                
-                <div className='absolute top-4 right-6 text-teal-100'>
-                  <FaQuoteLeft size={40} />
-                </div>
+                <FaQuoteLeft className="absolute right-6 top-6 text-teal-200 text-4xl"/>
 
-                <div className='flex items-center gap-4 mb-6'>
-                  <img 
-                    src={review.image} 
-                    alt={review.name} 
-                    className='w-16 h-16 rounded-full border-2 border-teal-500 object-cover shadow-md'
-                  />
+                <div className="flex items-center gap-4 mb-6">
+                  <img src={review.image} alt="" className="w-16 h-16 rounded-full border-4 border-teal-500"/>
                   <div>
-                    <h3 className='font-bold text-gray-800 text-xl'>{review.name}</h3>
-                    <p className='text-sm text-teal-600 font-bold uppercase tracking-wider'>
-                      {review.role}
-                    </p>
+                    <h3 className="font-bold text-xl">{review.name}</h3>
+                    <p className="text-teal-600 text-sm font-semibold uppercase tracking-wider">{review.role}</p>
                   </div>
                 </div>
 
-                <p className='text-gray-600 text-base leading-relaxed italic'>
+                <p className="text-gray-600 italic leading-relaxed mb-4">
                   "{review.text}"
                 </p>
 
-                <div className='flex gap-1 mt-6 text-yellow-400 text-lg'>
+                <div className="text-yellow-400 text-lg flex gap-1">
                   {[...Array(5)].map((_, i) => (
-                    <FaStar 
-                      key={i}
-                      className={i < Math.floor(review.rating) ? "text-yellow-400" : "text-gray-300"} 
-                    />
+                    <FaStar key={i} />
                   ))}
                 </div>
 
@@ -187,6 +94,36 @@ const CustomerLove = () => {
           ))}
         </Slider>
       </div>
+
+      {/* Mobile Cards - NO SLIDER */}
+      <div className="md:hidden px-4 space-y-6">
+        {reviews.map((review) => (
+          <div key={review.id} className="bg-white p-6 rounded-2xl shadow-lg border border-teal-100 relative">
+
+            <FaQuoteLeft className="absolute right-4 top-4 text-teal-200 text-3xl"/>
+
+            <div className="flex items-center gap-4 mb-4">
+              <img src={review.image} alt="" className="w-14 h-14 rounded-full border-4 border-teal-500"/>
+              <div>
+                <h3 className="font-bold text-lg">{review.name}</h3>
+                <p className="text-teal-600 text-xs font-semibold uppercase tracking-wider">{review.role}</p>
+              </div>
+            </div>
+
+            <p className="text-gray-600 italic leading-relaxed mb-3">
+              "{review.text}"
+            </p>
+
+            <div className="text-yellow-400 text-base flex gap-1">
+              {[...Array(5)].map((_, i) => (
+                <FaStar key={i} />
+              ))}
+            </div>
+
+          </div>
+        ))}
+      </div>
+
     </div>
   );
 };
