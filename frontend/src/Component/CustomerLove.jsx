@@ -59,7 +59,7 @@ const CustomerLove = () => {
 
       <div className="text-center mb-16">
         <Title text1="Customer " text2="Love" />
-        <p className="text-teal-600 mt-2 font-medium">See what our customers say about us</p>
+        <p className="text-teal-600 mt-2 font-medium">See what our customers say❤️</p>
       </div>
 
       {/* Desktop Slider */}
