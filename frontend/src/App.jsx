@@ -22,7 +22,7 @@ import ChatWidget from './Component/ChatbotWidget';
 function App() {
   let {userData}=useContext(userDataContext)
   let loacation=useLocation()
-  const hideAI = location.pathname === "/Login" || location.pathname === "/signup";
+  const hideAI = location.pathname === "/Login" ||location.pathname === "/login"|| location.pathname === "/signup";
   return (
    <>
      <ToastContainer />

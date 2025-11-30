@@ -63,7 +63,7 @@ function Cart() {
 
                     <div className='flex-1'>
                       <div className='flex justify-between items-start'>
-                        <h3 className='text-lg font-bold text-gray-800 truncate w-[80%]'>{productData.name}</h3>
+                        <h3 className='text-lg font-bold text-gray-800 leading-tight break-words w-[70%]'>{productData.name}</h3>
                         <p className='text-teal-700 font-bold text-lg'>{currency}{productData.price}</p>
                       </div>
 
