@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Title from './Title';
 import { FaStar, FaQuoteLeft } from "react-icons/fa";
@@ -72,22 +73,23 @@ const CustomerLove = () => {
     autoplaySpeed: 3000,
     focusOnSelect: true,
     arrows: false, // Arrows hata diye clean look ke liye
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-        }
-      },
-      {
-        breakpoint: 768, // Mobile view
-        settings: {
-          slidesToShow: 1,
-          centerMode: true,
-          centerPadding: "20px" // Thoda padding mobile ke liye
-        }
-      }
-    ]
+responsive: [
+  {
+    breakpoint: 1024,   // Tablet
+    settings: {
+      slidesToShow: 2,
+      centerMode: false
+    }
+  },
+  {
+    breakpoint: 768,    // Mobile
+    settings: {
+      slidesToShow: 1,
+      centerMode: false
+    }
+  }
+]
+
   };
 
   return (
@@ -95,22 +97,23 @@ const CustomerLove = () => {
       
       {/* --- CSS MAGIC FOR POP-UP EFFECT --- */}
       <style>{`
-        /* Side Cards (Normal State) */
-        .slick-slide > div {
-          transform: scale(0.9); /* Thoda chota */
-          transition: all 0.5s ease;
-          opacity: 0.6; /* Thoda dhundhla */
-          filter: blur(1px);
-        }
+        @media(min-width:1024px){
+  .slick-slide > div {
+    transform: scale(0.9);
+    opacity: 0.6;
+    filter: blur(1px);
+    transition: all 0.5s ease;
+  }
 
-        /* Center Card (Active State) */
-        .slick-center > div {
-          transform: scale(1.1); /* Zoom In */
-          opacity: 1;
-          filter: blur(0px);
-          position: relative;
-          z-index: 10;
-        }
+  .slick-center > div {
+    transform: scale(1.1);
+    opacity: 1 !important;
+    filter: blur(0px);
+    position: relative;
+    z-index: 10;
+  }
+}
+
         
         /* Remove focus outline */
         .slick-slide:focus { outline: none; }

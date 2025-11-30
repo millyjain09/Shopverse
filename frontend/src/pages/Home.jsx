@@ -23,12 +23,11 @@ import hero5 from '../assets/l.webp';
 function Home() {
   const navigate = useNavigate();
 
-  // --- HERO SLIDER LOGIC ---
   const slides = [
     {
       id: 1,
       tag: "MEGA SALE LIVE",
-      title: "Flat 50% Off On Men's Wear",
+      title: "Flat 50% Off ",
       subtitle: "Grab the best deals before they are gone.",
       img: hero1,
       bg: "from-teal-100 via-white to-teal-50",
@@ -38,7 +37,7 @@ function Home() {
     {
       id: 2,
       tag: "WINTER SPECIAL",
-      title: "Buy 1 Get 1 Free on Jackets",
+      title: "Buy 1 Get 1 Free ",
       subtitle: "Warm up your style this season.",
       img: hero2,
       bg: "from-emerald-100 via-white to-emerald-50",
@@ -48,7 +47,7 @@ function Home() {
     {
       id: 3,
       tag: "ETHNIC ELEGANCE",
-      title: "Premium Kurti Collection",
+      title: "Premium Collection",
       subtitle: "Starting at just ₹999. Limited Stock!",
       img: hero3,
       bg: "from-cyan-100 via-white to-cyan-50",
@@ -82,7 +81,7 @@ function Home() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-    }, 4500); 
+    }, 2500); 
     return () => clearInterval(timer);
   }, []);
 
@@ -90,10 +89,15 @@ function Home() {
     <div className="w-full min-h-screen bg-white overflow-x-hidden font-sans">
       <Nav />
 
-      {/* =========================================
-          1. HERO SLIDER (First Impression)
-         ========================================= */}
-      <div className="relative w-full h-[85vh] md:h-[90vh] overflow-hidden mt-[70px]">
+      {/* HERO SECTION */}
+      <div
+        className="
+          relative w-full 
+          h-[72vh] xs:h-[75vh] sm:h-[82vh] md:h-[90vh] 
+          overflow-hidden 
+          mt-[85px] sm:mt-[70px]
+        "
+      >
         {slides.map((slide, index) => (
           <div
             key={slide.id}
@@ -101,98 +105,72 @@ function Home() {
               index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
             } bg-gradient-to-br ${slide.bg}`}
           >
-            {/* Text Content */}
-            <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left px-6 md:px-20 gap-4 md:gap-6 z-20">
-              
+
+            {/* TEXT */}
+            <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left px-5 md:px-20 gap-3 md:gap-6 z-20">
+
               <motion.div 
-                key={`tag-${index}`}
-                initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5 }}
-                className="flex items-center gap-2 px-4 py-1 bg-white border border-gray-200 rounded-full shadow-sm"
+                initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
+                className="flex items-center gap-2 px-4 py-1 bg-white border border-gray-200 rounded-full shadow-sm mt-2"
               >
                 {slide.icon}
-                <span className="text-sm font-bold text-gray-800 tracking-wider">{slide.tag}</span>
+                <span className="text-xs sm:text-sm font-bold text-gray-800 tracking-wide">{slide.tag}</span>
               </motion.div>
 
               <motion.h1 
-                key={`title-${index}`}
-                initial={{ x: -50, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-4xl md:text-7xl font-extrabold text-gray-900 leading-tight"
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+                className="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight"
               >
                 {slide.title}
               </motion.h1>
               
               <motion.p 
-                key={`sub-${index}`}
-                initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.4 }}
-                className="text-lg md:text-xl text-gray-600 font-medium"
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+                className="text-sm sm:text-lg md:text-xl text-gray-600 font-medium"
               >
                 {slide.subtitle}
               </motion.p>
               
               <motion.button
-                key={`btn-${index}`}
-                initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.5, delay: 0.5 }}
                 onClick={() => navigate('/collection')}
-                className={`mt-6 px-10 py-4 text-white text-lg font-bold rounded-full shadow-xl transition-transform transform hover:scale-105 flex items-center gap-3 ${slide.btnColor}`}
+                className={`mt-4 sm:mt-5 px-7 sm:px-10 py-3 sm:py-4 text-white text-base sm:text-lg font-bold rounded-full shadow-xl transition-all hover:scale-105 flex items-center gap-3 ${slide.btnColor}`}
               >
                 Check Offer <FaTags />
               </motion.button>
             </div>
 
-            {/* Image Content */}
-            <div className="flex-1 h-[50%] md:h-full flex items-center justify-center relative">
-               <motion.img 
-                  key={`img-${index}`}
-                  initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.8 }}
-                  src={slide.img} 
-                  alt="Hero" 
-                  className="h-[80%] md:h-[85%] object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500"
-               />
+            {/* IMAGE */}
+            <div className="flex-1 h-[50%] sm:h-[55%] md:h-full flex items-center justify-center relative">
+              <motion.img 
+                src={slide.img}
+                className="h-[60%] sm:h-[70%] md:h-[85%] object-contain drop-shadow-2xl transition-transform duration-500"
+              />
             </div>
+
           </div>
         ))}
 
-        {/* Dots */}
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex gap-3 z-30">
+        {/* DOTS */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-30">
           {slides.map((_, idx) => (
             <div 
-              key={idx} 
+              key={idx}
               onClick={() => setCurrentSlide(idx)}
-              className={`w-3 h-3 rounded-full cursor-pointer transition-all border border-gray-400 ${currentSlide === idx ? 'bg-teal-800 w-10' : 'bg-transparent'}`}
+              className={`w-3 h-3 rounded-full cursor-pointer transition-all border border-gray-400 ${
+                currentSlide === idx ? "bg-teal-800 w-8" : "bg-transparent"
+              }`}
             ></div>
           ))}
         </div>
       </div>
 
-      {/* =========================================
-          2. LATEST COLLECTION
-         ========================================= */}
-      <section className="w-full">
-        <LatestCollection />
-      </section>
-
-      {/* =========================================
-          3. CRAZY DEALS (Visual Break)
-         ========================================= */}
+      {/* OTHER SECTIONS */}
+      <LatestCollection />
       <CrazyDeals />
-
-      {/* =========================================
-          4. BEST SELLERS
-         ========================================= */}
-      <section className="w-full">
-         <BestSeller />
-      </section>
-
-      {/* =========================================
-          5. CUSTOMER LOVE
-         ========================================= */}
+      <BestSeller />
       <CustomerLove />
-
-      {/* =========================================
-          6. FOOTER & EXTRAS
-         ========================================= */}
       <OurPolicy />
-      
+
       <div className="py-10 bg-teal-50/30">
         <NewLetterBox />
       </div>

@@ -21,7 +21,7 @@ function ProductDetails() {
   const [size, setSize] = useState('')
   const [sizeError, setSizeError] = useState(false)
 
-  // ✅ NEW STATE: Tab Switch ke liye
+  
   const [activeTab, setActiveTab] = useState('description');
 
   const fetchProductData = async () => {
@@ -64,13 +64,37 @@ function ProductDetails() {
               ))}
             </div>
 
-            <div className="flex-1 h-[400px] sm:h-[500px] bg-white rounded-2xl border border-gray-100 shadow-sm flex items-center justify-center p-4 relative overflow-hidden group">
-              <img
-                src={image}
-                alt={productData.name}
-                className="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-110"
-              />
-            </div>
+<div
+  className="
+    flex-1 
+    w-full               /* width fix for all screens */
+    max-w-[360px]        /* desktop par too wide na ho */
+    h-[260px]            /* mobile height */
+    sm:h-[350px]         /* small tablets */
+    md:h-[430px]         /* tablets */
+    lg:h-[500px]         /* desktop */
+    bg-white rounded-2xl border border-gray-100 shadow-sm 
+    flex items-center justify-center p-4 
+    relative overflow-hidden group mx-auto
+  "
+>
+
+ <img
+  src={image}
+  alt={productData.name}
+  className="
+    w-full h-full
+    object-contain   /* image full dikhegi, crop nahi hogi */
+    transition-transform duration-500 
+    group-hover:scale-105
+  "
+/>
+
+</div>
+
+
+
+
           </div>
 
           {/* --- RIGHT: PRODUCT INFO --- */}
