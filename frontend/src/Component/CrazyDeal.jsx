@@ -2,13 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaBolt, FaArrowRight, FaFire } from "react-icons/fa";
 import { motion } from 'framer-motion';
+import img1 from '../assets/logo1.jpg';
+import img2 from '../assets/logo2.jpeg';
+import img3 from '../assets/logo3.jpg';
+import img4 from '../assets/logo4.webp';
+import img5 from '../assets/logo6.jpg';
 
 const CRAZY_DEALS_DATA_BASE = [
-    { mainImage: '/src/assets/logo1.jpg', dealText: 'MIN. 50% OFF Dapper Wear', link: '/collection', subText: "Premium Brands" },
-    { mainImage: '/src/assets/logo2.jpeg', dealText: 'MIN. 50% OFF Refined Wardrobe', link: '/collection', subText: "Luxury Picks" },
-    { mainImage: '/src/assets/logo3.jpg', dealText: 'MIN. 50% OFF Easygoing Styles', link: '/collection', subText: "Daily Comfort" },
-    { mainImage: '/src/assets/logo4.webp', dealText: 'MIN. 55% OFF Casual Appeal', link: '/collection', subText: "Streetwear Special" },
-    { mainImage: '/src/assets/logo6.jpg', dealText: 'UNDER ₹899 Regal Charm', link: '/collection', subText: "Wedding Season" },
+    { mainImage: img1, dealText: 'MIN. 50% OFF Dapper Wear', link: '/collection', subText: "Premium Brands" },
+    { mainImage: img2, dealText: 'MIN. 50% OFF Refined Wardrobe', link: '/collection', subText: "Luxury Picks" },
+    { mainImage: img3, dealText: 'MIN. 50% OFF Easygoing Styles', link: '/collection', subText: "Daily Comfort" },
+    { mainImage: img4, dealText: 'MIN. 55% OFF Casual Appeal', link: '/collection', subText: "Streetwear Special" },
+    { mainImage: img5, dealText: 'UNDER ₹899 Regal Charm', link: '/collection', subText: "Wedding Season" },
 ];
 
 // Desktop = 5

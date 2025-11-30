@@ -90,79 +90,108 @@ function Home() {
       <Nav />
 
       {/* HERO SECTION */}
-      <div
-        className="
-          relative w-full 
-          h-[72vh] xs:h-[75vh] sm:h-[82vh] md:h-[90vh] 
-          overflow-hidden 
-          mt-[85px] sm:mt-[70px]
-        "
-      >
-        {slides.map((slide, index) => (
-          <div
-            key={slide.id}
-            className={`absolute inset-0 w-full h-full flex flex-col md:flex-row items-center justify-center transition-opacity duration-1000 ease-in-out ${
-              index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
-            } bg-gradient-to-br ${slide.bg}`}
-          >
+    {/* HERO SECTION */}
+<div
+  className="
+    relative w-full 
+    h-[80vh] sm:h-[85vh] md:h-[90vh]
+    overflow-hidden 
+    mt-[85px] sm:mt-[70px]
+  "
+>
+  {slides.map((slide, index) => (
+    <div
+      key={slide.id}
+      className={`absolute inset-0 w-full h-full flex flex-col
+        md:flex-row items-center justify-between
+        transition-opacity duration-1000 ease-in-out px-4 sm:px-10
+        ${index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"}
+        bg-gradient-to-br ${slide.bg}`}
+    >
 
-            {/* TEXT */}
-            <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left px-5 md:px-20 gap-3 md:gap-6 z-20">
+      {/* TEXT SECTION */}
+      <div className="
+        flex-1 flex flex-col items-center md:items-start 
+        text-center md:text-left gap-2 sm:gap-4 mt-4 sm:mt-6 z-20
+      ">
 
-              <motion.div 
-                initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
-                className="flex items-center gap-2 px-4 py-1 bg-white border border-gray-200 rounded-full shadow-sm mt-2"
-              >
-                {slide.icon}
-                <span className="text-xs sm:text-sm font-bold text-gray-800 tracking-wide">{slide.tag}</span>
-              </motion.div>
+        <motion.div 
+          initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
+          className="flex items-center gap-2 px-4 py-1 bg-white/80 
+            border border-gray-200 rounded-full shadow-sm"
+        >
+          {slide.icon}
+          <span className="text-xs sm:text-sm font-bold text-gray-800 tracking-wide">
+            {slide.tag}
+          </span>
+        </motion.div>
 
-              <motion.h1 
-                initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                className="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight"
-              >
-                {slide.title}
-              </motion.h1>
-              
-              <motion.p 
-                initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                className="text-sm sm:text-lg md:text-xl text-gray-600 font-medium"
-              >
-                {slide.subtitle}
-              </motion.p>
-              
-              <motion.button
-                onClick={() => navigate('/collection')}
-                className={`mt-4 sm:mt-5 px-7 sm:px-10 py-3 sm:py-4 text-white text-base sm:text-lg font-bold rounded-full shadow-xl transition-all hover:scale-105 flex items-center gap-3 ${slide.btnColor}`}
-              >
-                Check Offer <FaTags />
-              </motion.button>
-            </div>
+        <motion.h1 
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+          className="
+            text-3xl sm:text-4xl md:text-6xl font-extrabold 
+            leading-tight mt-2 sm:mt-3
+          "
+        >
+          {slide.title}
+        </motion.h1>
+        
+        <motion.p 
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+          className="text-sm sm:text-lg md:text-xl 
+            text-gray-700 font-medium max-w-[320px]"
+        >
+          {slide.subtitle}
+        </motion.p>
 
-            {/* IMAGE */}
-            <div className="flex-1 h-[50%] sm:h-[55%] md:h-full flex items-center justify-center relative">
-              <motion.img 
-                src={slide.img}
-                className="h-[60%] sm:h-[70%] md:h-[85%] object-contain drop-shadow-2xl transition-transform duration-500"
-              />
-            </div>
-
-          </div>
-        ))}
-
-        {/* DOTS */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-30">
-          {slides.map((_, idx) => (
-            <div 
-              key={idx}
-              onClick={() => setCurrentSlide(idx)}
-              className={`w-3 h-3 rounded-full cursor-pointer transition-all border border-gray-400 ${
-                currentSlide === idx ? "bg-teal-800 w-8" : "bg-transparent"
-              }`}
-            ></div>
-          ))}
-        </div>
+        {/* BUTTON */}
+        <motion.button
+          onClick={() => navigate('/collection')}
+          className={`
+            mt-3 sm:mt-5 px-8 py-3 sm:py-4 
+            text-white text-sm sm:text-lg font-bold 
+            rounded-full shadow-lg transition-all hover:scale-105 
+            flex items-center gap-2 sm:gap-3 ${slide.btnColor}
+          `}
+        >
+          Check Offer <FaTags />
+        </motion.button>
       </div>
+
+      {/* IMAGE SECTION (MOBILE OPTIMIZED) */}
+      <div className="
+        flex-1 flex items-end justify-center 
+        relative mt-4 sm:mt-8
+      ">
+        <motion.img 
+          src={slide.img}
+          className="
+            h-[45vh] sm:h-[55vh] md:h-[80%] 
+            object-contain drop-shadow-xl 
+            transition-transform duration-700
+          "
+        />
+      </div>
+
+    </div>
+  ))}
+
+  {/* DOTS */}
+  <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 sm:gap-3 z-30">
+    {slides.map((_, idx) => (
+      <div 
+        key={idx}
+        onClick={() => setCurrentSlide(idx)}
+        className={`
+          h-2 w-2 sm:h-3 sm:w-3 rounded-full cursor-pointer 
+          transition-all border border-gray-400 
+          ${currentSlide === idx ? "bg-teal-800 w-6 sm:w-8" : "bg-gray-300"}
+        `}
+      ></div>
+    ))}
+  </div>
+</div>
+
 
       {/* OTHER SECTIONS */}
       <LatestCollection />

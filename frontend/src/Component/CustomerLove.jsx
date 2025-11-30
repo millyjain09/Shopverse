@@ -61,36 +61,37 @@ const reviews = [
 const CustomerLove = () => {
   
   // --- SLIDER CONFIGURATION ---
-  const settings = {
-    dots: true,
-    className: "center",
-    centerMode: true, // ✅ Center wala card focus mein rahega
-    infinite: true,
-    centerPadding: "0px",
-    slidesToShow: 3, // Desktop pe 3 dikhenge
-    speed: 500,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    focusOnSelect: true,
-    arrows: false, // Arrows hata diye clean look ke liye
-responsive: [
-  {
-    breakpoint: 1024,   // Tablet
-    settings: {
-      slidesToShow: 2,
-      centerMode: false
+ const settings = {
+  dots: true,
+  className: "center",
+  centerMode: true,
+  infinite: true,
+  centerPadding: "0px",
+  slidesToShow: 3,
+  speed: 500,
+  autoplay: true,
+  autoplaySpeed: 3000,
+  focusOnSelect: true,
+  arrows: false,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 2,
+        centerMode: false,
+        centerPadding: "0px"
+      }
+    },
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 1,
+        centerMode: false,
+        centerPadding: "0px"
+      }
     }
-  },
-  {
-    breakpoint: 768,    // Mobile
-    settings: {
-      slidesToShow: 1,
-      centerMode: false
-    }
-  }
-]
-
-  };
+  ]
+};
 
   return (
     <div className='py-20 bg-gradient-to-b from-white to-teal-50 overflow-hidden font-sans'>
