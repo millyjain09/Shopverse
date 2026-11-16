@@ -30,19 +30,19 @@ It combines modern e-commerce functionality with AI integration, secure payment 
 ### 🏠 Home Page
 
 <p align="center">
-  <img src="screenshots/Home.png" width="100%" alt="ShopVerse Home Page"/>
+  <img src="Screenshots/Home.png" width="100%" alt="ShopVerse Home Page"/>
 </p>
 
 ### 🤖 AI Integration
 
 <p align="center">
-  <img src="screenshots/AI.png" width="100%" alt="ShopVerse AI Feature"/>
+  <img src="Screenshots/AI.png" width="100%" alt="ShopVerse AI Feature"/>
 </p>
 
 ### 📦 Order & Delivery
 
 <p align="center">
-  <img src="screenshots/delivery.png" width="100%" alt="ShopVerse Delivery Section"/>
+  <img src="Screenshots/delivery.png" width="100%" alt="ShopVerse Delivery Section"/>
 </p>
 
 ---
